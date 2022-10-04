@@ -1,0 +1,52 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:TimerSleepPC.ViewModels"
+             xmlns:local="using:TimerSleepPC.Views"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="480"
+             x:Class="TimerSleepPC.Views.HomeWindow">
+
+    <UserControl.DataContext>
+        <vm:HomeWindowViewModel/>
+    </UserControl.DataContext>
+
+    <UserControl.Styles>
+        <Style Selector="TextBox">
+            <Setter Property="Width" Value="70"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+        <Style Selector="TextBlock">
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+    </UserControl.Styles>
+
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="20">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10"
+                    IsVisible="{Binding !PCOff}">
+            <TextBlock HorizontalAlignment="Center"
+                       TextWrapping="WrapWithOverflow">Укажите время, через которое ПК уйдет в спящий режим</TextBlock>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="50">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock>Часы:</TextBlock>
+                    <TextBox Text="{Binding Hours}"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock>Минуты:</TextBlock>
+                    <TextBox Text="{Binding Minuts}"></TextBox>
+                </StackPanel>
+            </StackPanel>
+            <Button  HorizontalAlignment="Center" Background="SkyBlue"
+                     VerticalContentAlignment="Center" Command="{Binding GoTimer}"
+                     Height="40" FontSize="18">Установить</Button>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10"
+                    IsVisible="{Binding PCOff}">
+            <TextBlock FontSize="24">До выключения:</TextBlock>
+            <TextBlock FontSize="26" Text="{Binding RemainTime, StringFormat=\{0:hh\\:mm\\:ss\}}"/>
+            <Button HorizontalAlignment="Center" Background="SkyBlue" FontSize="18"
+                    Command="{Binding CancelTimer}">Отмена</Button>
+        </StackPanel>
+    </StackPanel>
+
+</UserControl>
