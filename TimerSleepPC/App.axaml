@@ -9,4 +9,9 @@
     <Application.Styles>
         <FluentTheme Mode="Light"/>
     </Application.Styles>
+
+    <Application.Resources>
+        <SolidColorBrush x:Key="SystemControlBackgroundAltHighBrush" Color="#02E6E6FA"/>
+    </Application.Resources>
+
 </Application>
