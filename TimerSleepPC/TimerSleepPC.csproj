@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="Current">
+﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="Current">
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
         <TargetFramework>net5.0</TargetFramework>
@@ -11,7 +11,8 @@
         <UpgradeBackupLocation>
         </UpgradeBackupLocation>
         <OldToolsVersion>2.0</OldToolsVersion>
-        <ApplicationIcon></ApplicationIcon>
+        <ApplicationIcon>Assets\timer_1225.ico</ApplicationIcon>
+        <Version>1.0.1</Version>
     </PropertyGroup>
     <ItemGroup>
         <Folder Include="Models\" />
