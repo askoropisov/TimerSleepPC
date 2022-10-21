@@ -18,6 +18,8 @@
         </Style>
         <Style Selector="TextBlock">
             <Setter Property="FontSize" Value="18"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
         <Style Selector="Button">
             <Setter Property="FontSize" Value="18"/>
@@ -34,7 +36,12 @@
 
         <StackPanel Spacing="10" IsVisible="{Binding !PCOff}">
             <TextBlock HorizontalAlignment="Center"
-                       TextWrapping="WrapWithOverflow">Укажите время, через которое ПК:</TextBlock>
+                       TextWrapping="WrapWithOverflow">Режим:</TextBlock>
+            <ComboBox HorizontalAlignment="Center" VerticalAlignment="Center"
+                      HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                      Items="{Binding Mods}" Width="200" PlaceholderText="Не выбран"
+                      SelectedItem="{Binding SelectMode}">
+            </ComboBox>
             <ToggleSwitch IsChecked="{Binding Mode, Mode=TwoWay }" FontSize="18"
                           OnContent="Уйдет в спящий режим" OffContent="Выключится"/>
             <StackPanel Orientation="Horizontal" Spacing="50">
@@ -58,7 +65,7 @@
                        HorizontalAlignment="Center"/>
             <Button Command="{Binding CancelTimer}">Отмена</Button>
         </StackPanel>
-
+        <TextBlock FontSize="12">Версия: 1.1.0</TextBlock>
     </StackPanel>
 
 </UserControl>

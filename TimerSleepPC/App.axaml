@@ -10,8 +10,9 @@
         <FluentTheme Mode="Dark"/>
     </Application.Styles>
 
-    <Application.Resources>
+    <!--Режим прозрачного фона-->
+    <!--<Application.Resources>
         <SolidColorBrush x:Key="SystemControlBackgroundAltHighBrush" Color="#02E6E6FA"/>
-    </Application.Resources>
+    </Application.Resources>-->
 
 </Application>

@@ -1,8 +1,10 @@
 ﻿using ReactiveUI;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading;
+using TimerSleepPC.Enums;
 
 namespace TimerSleepPC.ViewModels
 {
@@ -10,6 +12,28 @@ namespace TimerSleepPC.ViewModels
     {
         private Stopwatch? _stopwatch;
         private Timer? timer;
+
+        public List<string> Mods { get; set; } = new List<string> { "Спящий режим", "Выключение", "Таймер" };
+
+        private string? _selectMode;
+        public string? SelectMode
+        {
+            get => _selectMode;
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _selectMode, value);
+                if (value == "Спящий режим") ModeS = Modes.SleepMode;
+                else if (value == "Выключение") ModeS = Modes.PowerOffMode;
+                else if (value == "Таймер") ModeS = Modes.TimerAlarmMode;
+            }
+        }
+
+        private Modes _modeS;
+        public Modes ModeS
+        {
+            get => _modeS;
+            set => this.RaiseAndSetIfChanged(ref _modeS, value);
+        }
 
         private string? _minute;
         public string? Minuts
