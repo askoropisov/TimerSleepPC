@@ -78,8 +78,30 @@ namespace TimerSleepPC.ViewModels
             static extern bool SetSuspendState(bool hiberate, bool forceCritical, bool disableWakeEvent);
 
             CancelTimer();
-            if(Mode) SetSuspendState(false, true, true);
-            else Process.Start("shutdown", "/s /t 0");
+            //if(Mode) SetSuspendState(false, true, true);
+            //else Process.Start("shutdown", "/s /t 0");
+
+            if (ModeS == Modes.SleepMode) SetSuspendState(false, true, true);
+            else if (ModeS == Modes.PowerOffMode) Process.Start("shutdown", "/s /t 0");
+            else if (ModeS == Modes.TimerAlarmMode) TimerAlarm();
+        }
+
+        public void TimerAlarm()
+        {
+            [DllImport("user32.dll", EntryPoint = "FindWindow", SetLastError = true)]
+            static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+            [DllImport("user32.dll", EntryPoint = "SendMessage", SetLastError = true)]
+            static extern IntPtr SendMessage(IntPtr hWnd, Int32 Msg, IntPtr wParam, IntPtr lParam);
+
+            const int WM_COMMAND = 0x111;
+            const int MIN_ALL = 419;
+            const int MIN_ALL_UNDO = 416;
+
+            IntPtr lHwnd = FindWindow("Shell_TrayWnd", null);
+            SendMessage(lHwnd, WM_COMMAND, (IntPtr)MIN_ALL, IntPtr.Zero);
+            //System.Threading.Thread.Sleep(2000);
+            //SendMessage(lHwnd, WM_COMMAND, (IntPtr)MIN_ALL_UNDO, IntPtr.Zero);
+
         }
 
         public void GoTimer()
